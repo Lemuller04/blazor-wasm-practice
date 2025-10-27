@@ -9,3 +9,13 @@ Welcome to your new app.
 <p>Thats Hornet from Hollow Knight: Silk Song</p>
 
 <img src="img/hornet.webp" alt="Hornet from Silk Song" />
+
+<h3>Demo Contador</h3>
+<Contador InitialValue="10" OnChange="HandleChange" />
+
+@code {
+    int lastValue;
+    void HandleChange(int v) => lastValue = v;
+}
+
+<p>Último valor recebido: @lastValue</p>

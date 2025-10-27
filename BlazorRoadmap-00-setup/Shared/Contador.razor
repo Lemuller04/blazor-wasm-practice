@@ -1,0 +1,18 @@
+@code {
+    [Parameter] public int InitialValue { get; set; } = 0;
+    [Parameter] public EventCallback<int> OnChange { get; set; }
+
+    private int value;
+    protected override void OnInitialized() => value = InitialValue;
+
+    void Increment()
+    {
+        value++;
+        OnChange.InvokeAsync(value);
+    }
+}
+
+<div>
+    <p>Valor: @value</p>
+    <button class="btn btn-primary" @onclick="Increment">+</button>
+</div>
