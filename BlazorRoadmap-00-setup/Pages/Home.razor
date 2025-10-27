@@ -21,6 +21,7 @@ Welcome to your new app.
 
 <p>Último valor recebido: @lastValue</p>
 <hr>
+
 <hr>
 <h3>Demo Rating</h3>
 <Rating @bind-Value="nota" />
@@ -28,5 +29,16 @@ Welcome to your new app.
 
 @code {
     int nota = 3;
+}
+<hr>
+
+<hr>
+<h3>Toggle Demo</h3>
+<Toggle @bind-Value="ativo" />
+
+<p>Status: @(ativo ? "Ativo" : "Inativo")</p>
+
+@code {
+    bool ativo = false;
 }
 <hr>

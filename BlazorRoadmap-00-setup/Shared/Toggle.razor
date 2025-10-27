@@ -1,0 +1,16 @@
+<button class="btn @(Value ? "btn-success" : "btn-secondary")"
+        @onclick="ToggleValue">
+    @(Value ? "ON" : "OFF")
+</button>
+
+@code {
+    [Parameter] public bool Value { get; set; }
+    [Parameter] public EventCallback<bool> ValueChanged { get; set; }
+
+    private Task ToggleValue()
+    {
+        Value = !Value;
+        return ValueChanged.InvokeAsync(Value);
+    }
+}
+
