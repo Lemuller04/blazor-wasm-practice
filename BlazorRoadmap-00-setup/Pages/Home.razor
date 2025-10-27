@@ -42,3 +42,23 @@ Welcome to your new app.
     bool ativo = false;
 }
 <hr>
+
+<hr>
+<h3>Card Demo</h3>
+
+<Card Title="Usuário">
+    <ChildContent>Nome: Ana</ChildContent>
+    <Footer>
+        <button class="btn btn-sm btn-secondary">Fechar</button>
+    </Footer>
+</Card>
+<hr>
+
+<hr>
+<h3>List Demo</h3>
+<ListTemplate Items="@(new[] { "Maçã", "Banana", "Pera" })">
+    <RowTemplate Context="it">
+        <span><b>@it</b></span>
+    </RowTemplate>
+</ListTemplate>
+<hr>

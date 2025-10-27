@@ -1,0 +1,14 @@
+@code {
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? Footer { get; set; }
+}
+
+<div class="card" style="margin:1rem; border:1px solid #ccc;">
+    <div class="card-header">@Title</div>
+    <div class="card-body">@ChildContent</div>
+    @if (Footer is not null)
+    {
+        <div class="card-footer">@Footer</div>
+    }
+</div>
