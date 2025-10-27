@@ -1,0 +1,17 @@
+@for (int i = 1; i <= 5; i++) {
+    var star = i;
+    <span @onclick="() => SetValue(star)" style="cursor: pointer; font-size: 24px;">
+        @(star <= Value ? "*" : "-")
+    </span>
+}
+
+@code {
+    [Parameter] public int Value { get; set; }
+    [Parameter] public EventCallback<int> ValueChanged { get; set; }
+
+    private Task SetValue(int v)
+    {
+        Value = v;
+        return ValueChanged.InvokeAsync(v);
+    }
+}

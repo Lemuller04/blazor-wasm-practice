@@ -10,6 +10,7 @@ Welcome to your new app.
 
 <img src="img/hornet.webp" alt="Hornet from Silk Song" />
 
+<hr>
 <h3>Demo Contador</h3>
 <Contador InitialValue="10" OnChange="HandleChange" />
 
@@ -19,3 +20,13 @@ Welcome to your new app.
 }
 
 <p>Último valor recebido: @lastValue</p>
+<hr>
+<hr>
+<h3>Demo Rating</h3>
+<Rating @bind-Value="nota" />
+<p>Nota escolhida: @nota</p>
+
+@code {
+    int nota = 3;
+}
+<hr>
