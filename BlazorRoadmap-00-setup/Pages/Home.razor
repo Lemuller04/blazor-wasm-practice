@@ -1,4 +1,6 @@
 ﻿@page "/"
+@inject ITimeService Clock
+@inject IWeatherService Weather
 
 <PageTitle>Home</PageTitle>
 
@@ -120,4 +122,32 @@ Welcome to your new app.
     <li><a href="cliente/1">Cliente 1</a></li>
     <li><a href="cliente/2">Cliente 2</a></li>
 </ul>
+<hr>
+
+<hr>
+<h3>Time Service Demo</h3>
+<p>Agora: @Clock.Now()</p>
+<hr>
+
+<hr>
+<h3>Weather Service Demo</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Temp. (C)</th>
+            <th>Resumo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var f in Weather.GetForecasts())
+        {
+            <tr>
+                <td>@f.Date.ToShortDateString()</td>
+                <td>@f.TemperatureC</td>
+                <td>@f.Summary</td>
+            </tr>
+        }
+    </tbody>
+</table>
 <hr>
