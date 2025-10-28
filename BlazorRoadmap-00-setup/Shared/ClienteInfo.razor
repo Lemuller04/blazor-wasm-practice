@@ -1,0 +1,10 @@
+@code {
+    [Parameter] public int ClienteId { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine($"ClienetInfo recebeu ClienteId={ClienteId}");
+    }
+}
+
+<p>Componente filho: ClienteId = @ClienteId</p>
