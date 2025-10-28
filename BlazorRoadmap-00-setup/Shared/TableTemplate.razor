@@ -1,0 +1,19 @@
+@typeparam TItem
+
+@code {
+    [Parameter] public IEnumerable<TItem> Items { get; set; } = [];
+    [Parameter] public RenderFragment? Header { get; set; }
+    [Parameter] public RenderFragment<TItem>? RowTemplate { get; set; }
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>@Header</tr>
+    </thead>
+    <tbody>
+        @foreach (var it in Items)
+        {
+            <tr>@RowTemplate!(it)</tr>
+        }
+    </tbody>
+</table>

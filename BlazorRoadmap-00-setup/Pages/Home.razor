@@ -62,3 +62,53 @@ Welcome to your new app.
     </RowTemplate>
 </ListTemplate>
 <hr>
+
+<hr>
+<h3>Table Template demo</h3>
+
+<TableTemplate Items="@pessoas">
+    <Header>
+        <th>Nome</th>
+        <th>Idade</th>
+    </Header>
+    <RowTemplate Context="p">
+        <td>@p.Nome</td>
+        <td>@p.Idade</td>
+    </RowTemplate>
+</TableTemplate>
+
+@code {
+    record Pessoa(string Nome, int Idade);
+    List<Pessoa> pessoas = new()
+    {
+        new("Ana", 25),
+        new("Carlos", 30),
+        new("Maria", 22)
+    };
+}
+<hr>
+
+<hr>
+<h3>Modal Demo</h3>
+<button class="btn btn-primary" @onclick="() => showModal = true">Abrir Modal</button>
+
+<Modal Title="Confirmação" @bind-Show="showModal">
+    <ChildContent>
+        <p>Deseja realmente continuar?</p>
+    </ChildContent>
+    <Footer>
+        <button class="btn btn-secondary" @onclick="() => showModal = false">Cancel</button>
+        <button class="btn btn-danger" @onclick="Confirm">Confirm</button>
+    </Footer>
+</Modal>
+
+@code {
+    private bool showModal = false;
+
+    void Confirm()
+    {
+        showModal = false;
+        Console.WriteLine("Action confirmed!");
+    }
+}
+<hr>
