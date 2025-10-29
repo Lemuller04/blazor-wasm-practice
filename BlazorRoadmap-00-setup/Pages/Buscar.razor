@@ -1,0 +1,29 @@
+@page "/buscar"
+
+@inject NavigationManager Nav
+@using Microsoft.AspNetCore.WebUtilities
+
+<h3>Buscar</h3>
+
+@if (termo is null)
+{
+    <p>Nenhum termo informado.</p>
+}
+else
+{
+    <p>Termo buscado: <strong>@termo</strong></p>
+}
+
+@code {
+    string? termo;
+
+    protected override void OnInitialized()
+    {
+        var uri = Nav.ToAbsoluteUri(Nav.Uri);
+        var query = QueryHelpers.ParseQuery(uri.Query);
+        if (query.TryGetValue("q", out var q))
+        {
+            termo = q;
+        }
+    }
+}
