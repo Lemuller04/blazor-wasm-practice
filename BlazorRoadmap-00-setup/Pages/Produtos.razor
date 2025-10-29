@@ -1,0 +1,10 @@
+@page "/produtos"
+
+<h3>Lista de Produtos</h3>
+
+<ul>
+    <li><button class="btn btn-link" @onclick='() => Nav.NavigateTo("/produtos/ABC-123")'>Ver ABC-123</button></li>
+    <li><button class="btn btn-link" @onclick='() => Nav.NavigateTo("/produtos/XYZ-789")'>Ver XYZ-789</button></li>
+</ul>
+
+@inject NavigationManager Nav

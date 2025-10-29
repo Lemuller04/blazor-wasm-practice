@@ -1,0 +1,8 @@
+@page "/produtos/{sku}"
+
+@code {
+    [Parameter] public string sku { get; set; } = "";
+}
+
+<h3>Detalhes do Produto</h3>
+<p>SKU: <strong>@sku</strong></p>
