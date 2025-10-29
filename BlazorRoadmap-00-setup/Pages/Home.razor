@@ -1,6 +1,7 @@
 ﻿@page "/"
 @inject ITimeService Clock
 @inject IWeatherService Weather
+@inject IJSRuntime JS
 
 <PageTitle>Home</PageTitle>
 
@@ -157,14 +158,76 @@ Welcome to your new app.
 </table>
 <hr>
 
+<hr>
 <h3>Layout com Grid</h3>
 
 <div class="grid-layout">
     <div>Coluna 1: Menu</div>
     <div>Coluna 2: Conteúdo principal</div>
 </div>
+<hr>
 
+<hr>
 <h3>Tags</h3>
 <Tag Text="Blazor" />
 <Tag Text="CSS" />
 <Tag Text="WebAssembly" />
+<hr>
+
+<hr>
+<input id="nome" class="form-control" placeholder="Seu nome" />
+<button class="btn btn-secondary" @onclick="Alertar">Alertar</button>
+<button class="btn btn-outline-primary" @onclick="Focar">Focar input</button>
+
+<p>@viewportInfo</p>
+
+@code {
+    string viewportInfo = "";
+
+    async Task Alertar() =>
+        await JS.InvokeVoidAsync("site.alert", "Olá do JS!");
+
+    async Task Focar() =>
+        await JS.InvokeVoidAsync("site.focusById", "nome");
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var vp = await JS.InvokeAsync<Viewport>("site.viewport");
+            viewportInfo = $"Viewport: {vp.w}x{vp.h}";
+            StateHasChanged();
+        }
+    }
+
+    record Viewport(int w, int h);
+}
+
+<p>@scrollInfo</p>
+<button class="btn btn-info" @onclick="AtualizarScroll">Atualizar Scroll</button>
+
+@code {
+    string scrollInfo = "";
+
+    async Task AtualizarScroll()
+    {
+        var pos = await JS.InvokeAsync<Scroll>("site.scrollPosition");
+        scrollInfo = $"Scroll: {pos.x}px / {pos.y}px";
+    }
+
+    record Scroll(int x, int y);
+}
+<hr>
+
+<hr>
+<input @bind="textoCopiar" class="form-control" placeholder="Texto para copiar" />
+<button class="btn btn-success" @onclick="CopiarTexto">Copiar</button>
+
+@code {
+    string textoCopiar = "";
+
+    async Task CopiarTexto() =>
+        await JS.InvokeVoidAsync("site.copyToClipboard", textoCopiar);
+}
+
+<hr>
